@@ -9,6 +9,75 @@ string collumns[10] = {"A","B","C","D","E","F","G","H","I","J"};
 int rows[10] = {1,2,3,4,5,6,7,8,9,10};
 int sheet[10][10];
 
+int convertToInt(char a){
+  switch(a){
+    case 'A':
+      return 0;
+      break;
+    case 'B':
+      return 1;
+      break;
+    case 'C':
+      return 2;
+      break;
+    case 'D':
+      return 3;
+      break;
+    case 'E':
+      return 4;
+      break;
+    case 'F':
+      return 5;
+      break;
+    case 'G':
+      return 6;
+      break;
+    case 'H':
+      return 7;
+      break;
+    case 'I':
+      return 8;
+      break;
+    case 'J':
+      return 9;
+      break;
+  }
+}
+
+char convertToChar(int i){
+  switch (i){
+    case 0:
+      return 'A';
+      break;
+    case 1:
+      return 'B';
+      break;
+    case 2:
+      return 'C';
+      break;
+    case 3:
+      return 'D';
+      break;
+    case 4:
+      return 'E';
+      break;
+    case 5:
+      return 'F';
+      break;
+    case 6:
+      return 'G';
+      break;
+    case 7:
+      return 'H';
+      break;
+    case 8:
+      return 'I';
+      break;
+    case 9:
+      return 'J';
+      break;
+  }
+}
 
 void views(){
   system("cls");
@@ -58,39 +127,8 @@ void addData(){
   cout<<"rows : ";cin>>rw;
   cout<<"\nnilai : ";cin>>val;
 
-  switch(clm){ //convert char to int
-    case 'A':
-      i = 0;
-      break;
-    case 'B':
-      i=1;
-      break;
-    case 'C':
-      i = 2;
-      break;
-    case 'D':
-      i = 3;
-      break;
-    case 'E':
-      i = 4;
-      break;
-    case 'F':
-      i = 5;
-      break;
-    case 'G':
-      i = 6;
-      break;
-    case 'H':
-      i = 7;
-      break;
-    case 'I':
-      i = 8;
-      break;
-    case 'J':
-      i = 9;
-      break;
-  }
-
+  i = convertToInt(clm);
+  
   sheet[rw-1][i] = val;
 }
 
@@ -103,99 +141,64 @@ void dellData(){
   cout<<"collumn : ";cin>>clm;
   cout<<"rows : ";cin>>rw;
 
-   switch(clm){ //convert char to int
-      case 'A':
-        i = 0;
-        break;
-      case 'B':
-        i=1;
-        break;
-      case 'C':
-        i = 2;
-        break;
-      case 'D':
-        i = 3;
-        break;
-      case 'E':
-        i = 4;
-        break;
-      case 'F':
-        i = 5;
-        break;
-      case 'G':
-        i = 6;
-        break;
-      case 'H':
-        i = 7;
-        break;
-      case 'I':
-        i = 8;
-        break;
-      case 'J':
-        i = 9;
-        break;
-     }
-
-   sheet[rw-1][i] = 0;
+  i = convertToInt(clm);
+   
+  sheet[rw-1][i] = 0;
 }
 
 void sumData(){
   //fungsi ini digunakan untuk menjumlahakn data
   system("cls");
-  int rw1,rw2,i;
-  char clm;
-  cout<<"collumn : ";cin>>clm;
-  cout<<"rows : ";cin>>rw1;
-  cout<<"rows : ";cin>>rw2;
+  int val,rw1,rw2,i,m,n;
+  char clm,clm1,clm2;
+  int total =0;
+  cout <<"1.kolom\n2.baris\n";cin>>val;
+  switch(val){
+    case 1:
+      cout<<"collumn : ";cin>>clm;
+      cout<<"rows    : ";cin>>rw1;
+      cout<<"to rows : ";cin>>rw2;
 
-  switch(clm){ //convert char to int
-     case 'A':
-       i = 0;
-       break;
-     case 'B':
-       i=1;
-       break;
-     case 'C':
-       i = 2;
-       break;
-     case 'D':
-       i = 3;
-       break;
-     case 'E':
-       i = 4;
-       break;
-     case 'F':
-       i = 5;
-       break;
-     case 'G':
-       i = 6;
-       break;
-     case 'H':
-       i = 7;
-       break;
-     case 'I':
-       i = 8;
-       break;
-     case 'J':
-       i = 9;
-       break;
-    }
+      i = convertToInt(clm);
 
-  int total=0;
-  for(int j=0;j<10;++j){
-    int rw=rw1-1;
-    for (int k=0;k<10;++k){
-      if (j == i){
-        if(rw <= rw2-1){
-          total += sheet[rw][j];
-          rw++;
+      for(int j=0;j<10;++j){
+        int rw=rw1-1;
+        for (int k=0;k<10;++k){
+          if (j == i){
+            if(rw <= rw2-1){
+              total += sheet[rw][j];
+              rw++;
+            }
+          }
         }
       }
-    }
-  }
+      cout<<"hasil penjumlahan : "<<total<<endl;
+      system("pause");
+      break;
+    case 2:
+      cout <<"rows        :";cin>>rw1;
+      cout <<"collumns    :";cin>>clm1;
+      cout <<"to collumns :";cin>>clm2;
 
-  cout<<"hasil penjumlahan : "<<total;
-  system("pause");
+      m = convertToInt(clm1);
+      n = convertToInt(clm2);
+
+      for(int j=0;j<10;++j){
+        int rw=rw1-1;
+        for (int k=0;k<10;++k){
+          if (j == i){
+            if(m <= n){
+              total += sheet[rw][m];
+              m++;
+            }
+          }
+        }
+      }
+      cout<<"hasil penjumlahan : "<<total<<endl;
+      system("pause");
+      break;
+
+  }
 }
 
 void searchData(){
@@ -208,42 +211,10 @@ void searchData(){
   for(int i=0;i<10;++i){
     for (int j=0;j<10;++j){
       if (sheet[i][j]==val){
-        switch (j){
-          case 0:
-            clm = 'A';
-            break;
-          case 1:
-            clm = 'B';
-            break;
-          case 2:
-            clm = 'C';
-            break;
-          case 3:
-            clm = 'D';
-            break;
-          case 4:
-            clm = 'E';
-            break;
-          case 5:
-            clm = 'F';
-            break;
-          case 6:
-            clm = 'G';
-            break;
-          case 7:
-            clm = 'H';
-            break;
-          case 8:
-            clm = 'I';
-            break;
-          case 9:
-            clm = 'J';
-            break;
-        }
-
+        clm = convertToChar(j);
         cout<<"data di temukan di collumn : "<<clm<<" row "<<i+1<<endl;
       	system("pause");
-	  }
+      }
     }
   }
 }
@@ -260,7 +231,7 @@ void shortData(){
   switch(val){
     case 1:
       cout<<"masukkan baris : ";cin>>rw;
-      //rw-1;
+      
       for(int j=0;j<9;j++){
         cout<<sheet[rw-1][j];
         if(sheet[rw-1][j]>sheet[rw-1][j+1]){
@@ -274,38 +245,9 @@ void shortData(){
       break;
     case 2:
       cout<<"kolom : ";cin>>clm;
-      switch(clm){ //convert char to int
-         case 'A':
-           i = 0;
-           break;
-         case 'B':
-           i=1;
-           break;
-         case 'C':
-           i = 2;
-           break;
-         case 'D':
-           i = 3;
-           break;
-         case 'E':
-           i = 4;
-           break;
-         case 'F':
-           i = 5;
-           break;
-         case 'G':
-           i = 6;
-           break;
-         case 'H':
-           i = 7;
-           break;
-         case 'I':
-           i = 8;
-           break;
-         case 'J':
-           i = 9;
-           break;
-        }
+      
+      i = convertToInt(clm);
+      
       for (int j=0;j<9;j++){
         if (sheet[j][i]>sheet[j+1][i]){
           temp = sheet[j+1][i];
@@ -333,45 +275,15 @@ void averageData(){
       for (int j = 0;j<10;j++){
         total += sheet[rw-1][j];
       }
-      avg = total / 10;
+      avg = (float)(total) / 10;
       cout<<"rata-rata : "<<avg<<endl;
       system("pause");
 	  break;
     case 2:
       cout<<"colom : ";cin>>clm;
 
-      switch(clm){ //convert char to int
-          case 'A':
-            i = 0;
-            break;
-          case 'B':
-            i=1;
-            break;
-          case 'C':
-            i = 2;
-            break;
-          case 'D':
-            i = 3;
-            break;
-          case 'E':
-            i = 4;
-            break;
-          case 'F':
-            i = 5;
-            break;
-          case 'G':
-            i = 6;
-            break;
-          case 'H':
-            i = 7;
-            break;
-          case 'I':
-            i = 8;
-            break;
-          case 'J':
-            i = 9;
-            break;
-          }
+      i = convertToInt(clm);
+
       for(int j=0;j<10;++j){
         for (int k=0;k<10;++k){
           if (k == i){
@@ -379,7 +291,7 @@ void averageData(){
           }
         }
       }
-      avg = total /10;
+      avg = (float)(total) /10;
       cout <<"rata-rata"<< avg<<endl;
 	  system("pause");
       break;
@@ -395,9 +307,8 @@ void minData(){
   switch(val){
     case 1:
       cout<<"baris :";cin>>rw;
-      min = 0;
       for (int j=0;j<10;j++){
-        if (min > sheet[rw-1][i]){
+        if (min > sheet[rw-1][j] && sheet[rw-1][j]!=0){
           min = sheet[rw-1][j];
         }
       }
@@ -405,42 +316,10 @@ void minData(){
       system("pause");
       break;
     case 2:
-			cout<<"kolom : ";cin>>clm;
-      switch(clm){
-		case 'A':
-			i = 0;
-			break;
-		case 'B':
-			i=1;
-			break;
-		case 'C':
-		  i = 2;
-		  break;
-		case 'D':
-		  i = 3;
-		  break;
-		case 'E':
-		  i = 4;
-		  break;
-		case 'F':
-		  i = 5;
-		  break;
-		case 'G':
-		  i = 6;
-		  break;
-		case 'H':
-		  i = 7;
-		  break;
-		case 'I':
-		  i = 8;
-		  break;
-		case 'J':
-		  i = 9;
-		  break;
-			}
-      min =0;
+      cout<<"kolom : ";cin>>clm;
+      i = convertToInt(clm);
       for (int j=0;j<10;j++){
-        if (min<sheet[j][i]){
+        if (min>sheet[j][i] && sheet[j][i] != 0){
           min = sheet[j][i];
         }
       }
@@ -469,38 +348,9 @@ void maxData(){
       break;
     case 2:
       cout<<"kolom : ";cin>>clm;
-      switch(clm){
-			case 'A':
-      i = 0;
-      break;
-    case 'B':
-      i=1;
-      break;
-    case 'C':
-      i = 2;
-      break;
-    case 'D':
-      i = 3;
-      break;
-    case 'E':
-      i = 4;
-      break;
-    case 'F':
-      i = 5;
-      break;
-    case 'G':
-      i = 6;
-      break;
-    case 'H':
-      i = 7;
-      break;
-    case 'I':
-      i = 8;
-      break;
-    case 'J':
-      i = 9;
-      break;
-			}
+      
+      i = convertToInt(clm);
+
       max =0;
       for (int j=0;j<10;j++){
         if (max<sheet[j][i]){
@@ -517,7 +367,7 @@ void maxData(){
 void function(){
     int val;
     do{
-	  system("cls");
+      system("cls");
       cout<<"menu function\n\n";
       cout<<"1. tambah data\n";
       cout<<"2. delete data\n";
@@ -557,7 +407,6 @@ void function(){
           break;
       }
     }while(val!=9);
-	system("cls");
 }
 
 
@@ -566,6 +415,7 @@ int main(){
   int val;
 
   do{
+    system("cls");
     cout<<"Mini Spreadsheet\n\n"<<endl;
     cout<<"menu"<<endl;
     cout<<"1.View Sheet"<<endl;
