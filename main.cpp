@@ -250,7 +250,7 @@ void searchData(){
 
 
 void shortData(){
-  //system("cls");
+  system("cls");
   int val,i,rw;
   char clm;
 
