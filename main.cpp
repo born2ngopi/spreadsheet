@@ -4,14 +4,15 @@
 using namespace std;
 
 //deklarasi variabel
+//create table
 string collumns[10] = {"A","B","C","D","E","F","G","H","I","J"};
 int rows[10] = {1,2,3,4,5,6,7,8,9,10};
 int sheet[10][10];
 
 
 void views(){
+  //fungsi ini digunakan untuk melihat isi table
   cout<<"\t"<<"|";
-  
   for (int i=0;i<10;++i){
     cout<<collumns[i]<<"\t"<<"|";
   }
@@ -28,6 +29,7 @@ void views(){
 }
 
 void PrintSheet(){
+  //fungsi ini digunakan untuk membuat file
   ofstream myfile;
   myfile.open("spreadsheet.txt");
   myfile<<"\t"<<"|";
@@ -46,6 +48,7 @@ void PrintSheet(){
 }
 
 void addData(){
+  //fungsi ini digunakan untuk menambah data
   int val,rw,i;
   char clm;
   cout<<"collumn : ";cin>>clm;
@@ -90,6 +93,7 @@ void addData(){
 
 
 void dellData(){
+  //fungsi ini digunakan untuk menghapus data
   int rw,i;
   char clm;
   cout<<"collumn : ";cin>>clm;
@@ -132,6 +136,7 @@ void dellData(){
 }
 
 void sumData(){
+  //fungsi ini digunakan untuk menjumlahakn data
   int rw1,rw2,i;
   char clm;
   cout<<"collumn : ";cin>>clm;
@@ -178,7 +183,6 @@ void sumData(){
       if (j == i){
         if(rw <= rw2-1){
           total += sheet[rw][j];
-          cout<<sheet[rw][j]<<endl;
           rw++;
         }
       }
@@ -189,6 +193,7 @@ void sumData(){
 }
 
 void searchData(){
+  //fungsi ini digunakan untuk mencari data
   int val;
   char clm;
   cout<<"masukkan nilai yang dicari : ";cin>>val;
@@ -247,16 +252,58 @@ void shortData(){
     case 1:
       cout<<"masukkan baris : ";cin>>rw;
       //rw-1;
-      for(int j=0;j<10;j++){
+      for(int j=0;j<9;j++){
         cout<<sheet[rw-1][j];
-        if(sheet[rw][j]>sheet[rw][j+1]){
+        if(sheet[rw-1][j]>sheet[rw-1][j+1]){
           temp = sheet[rw-1][j+1];
           sheet[rw-1][j+1] = sheet[rw-1][j];
           sheet[rw-1][j] = temp;
         }
       }
+
+      
       break;
     case 2:
+      cout<<"kolom : ";cin>>clm;
+      switch(clm){ //convert char to int
+         case 'A':
+           i = 0;
+           break;
+         case 'B':
+           i=1;
+           break;
+         case 'C':
+           i = 2;
+           break;
+         case 'D':
+           i = 3;
+           break;
+         case 'E':
+           i = 4;
+           break;
+         case 'F':
+           i = 5;
+           break;
+         case 'G':
+           i = 6;
+           break;
+         case 'H':
+           i = 7;
+           break;
+         case 'I':
+           i = 8;
+           break;
+         case 'J':
+           i = 9;
+           break;
+        }
+      for (int j=0;j<9;j++){
+        if (sheet[j][i]>sheet[j+1][i]){
+          temp = sheet[j+1][i];
+          sheet[j+1][i]=sheet[j][i];
+          sheet[j][i]=temp;
+        }
+      }
       break;
   }
 
@@ -264,6 +311,7 @@ void shortData(){
 }
 
 void averageData(){
+  //fungsi ini digunakan untuk mencari rata"
   int val,rw,i;
   int total=0;
   float avg;
@@ -326,26 +374,127 @@ void averageData(){
       cout << avg<<endl;
 
       break;
-       
-    
+  }
+}
+
+
+void minData(){
+  int val, min, rw,i;
+  char clm;
+  cout<<"1.baris\n2.kolom\n";cin>>val;
+  switch(val){
+    case 1:
+      cout<<"baris :";cin>>rw;
+      min = 0;
+      for (int j=0;j<10;j++){
+        if (min > sheet[rw-1][i]){
+          min = sheet[rw-1][j];
+        }
+      }
+      cout<<"data terkecil "<<min<<endl;
+      break;
+    case 2:
+			cout<<"kolom : ";cin>>clm;
+      switch(clm){
+			case 'A':
+      i = 0;
+      break;
+    case 'B':
+      i=1;
+      break;
+    case 'C':
+      i = 2;
+      break;
+    case 'D':
+      i = 3;
+      break;
+    case 'E':
+      i = 4;
+      break;
+    case 'F':
+      i = 5;
+      break;
+    case 'G':
+      i = 6;
+      break;
+    case 'H':
+      i = 7;
+      break;
+    case 'I':
+      i = 8;
+      break;
+    case 'J':
+      i = 9;
+      break;
+			}
+      min =0;
+      for (int j=0;j<10;j++){
+        if (min<sheet[j][i]){
+          min = sheet[j][i];
+        }
+      }
+      cout<<min<<endl;
+      break;
   }
 }
 
 void maxData(){
-  int val,max,rw;
+  int val,max,rw,i;
   char clm;
   cout<<"1.baris\n2.collumn\n";cin>>val;
   switch(val){
     case 1:
       cout<<"baris : ";cin>>rw;
       max =0;
-      for (int i=0;i<10;i++){
-        if(max<sheet[rw-1][i]){
-          max = sheet[rw-1][i];
+      for (int j=0;j<10;j++){
+        if(max<sheet[rw-1][j]){
+          max = sheet[rw-1][j];
         }
       }
       cout<<max;
       break;
+    case 2:
+      cout<<"kolom : ";cin>>clm;
+      switch(clm){
+			case 'A':
+      i = 0;
+      break;
+    case 'B':
+      i=1;
+      break;
+    case 'C':
+      i = 2;
+      break;
+    case 'D':
+      i = 3;
+      break;
+    case 'E':
+      i = 4;
+      break;
+    case 'F':
+      i = 5;
+      break;
+    case 'G':
+      i = 6;
+      break;
+    case 'H':
+      i = 7;
+      break;
+    case 'I':
+      i = 8;
+      break;
+    case 'J':
+      i = 9;
+      break;
+			}
+      max =0;
+      for (int j=0;j<10;j++){
+        if (max<sheet[j][i]){
+          max = sheet[j][i];
+        }
+      }
+      cout<<max<<endl;
+
   }
 }
 
@@ -359,7 +508,9 @@ void function(){
       cout<<"4. cari data\n";
       cout<<"5. sorting\n";
       cout<<"6. rata-rata\n";
-      cout<<"7. nilai terbesar\n";
+      cout<<"7. nilai terkecil\n";
+      cout<<"8. nilai terbesar\n";
+      cout<<"9. kembali\n";
 
       cout<<"masukkan pilihan [1..7] ";cin>>val;
       switch(val){
@@ -382,10 +533,13 @@ void function(){
           averageData();
           break;
         case 7:
+          minData();
+          break;
+        case 8:
           maxData();
           break;
       }
-    }while(val!=8);
+    }while(val!=9);
 }
 
 
