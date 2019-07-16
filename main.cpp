@@ -336,7 +336,7 @@ void averageData(){
       }
       avg = total /10;
       cout<<total<<endl;
-      cout<<"rata-rata"<<avg<<endl;
+      cout<<"rata-rata : "<<avg<<endl;
       system("pause");
 	  break;
     case 2:
@@ -403,7 +403,7 @@ void minData(){
           min = sheet[rw-1][j];
         }
       }
-      cout<<"data terkecil "<<min<<endl;
+      cout<<"data terkecil : "<<min<<endl;
       system("pause");
       break;
     case 2:
@@ -446,7 +446,7 @@ void minData(){
           min = sheet[j][i];
         }
       }
-      cout<<min<<endl;
+      cout<<"nilai terkecil : "<<min<<endl;
       system("pause");
       break;
   }
@@ -466,7 +466,7 @@ void maxData(){
           max = sheet[rw-1][j];
         }
       }
-      cout<<"nilai max"<<max;
+      cout<<"nilai max : "<<max<<endl;
       system("pause");
       break;
     case 2:
@@ -509,7 +509,7 @@ void maxData(){
           max = sheet[j][i];
         }
       }
-      cout<<"data max"<<max<<endl;
+      cout<<"data max :"<<max<<endl;
       system("pause");
       break;
 
