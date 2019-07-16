@@ -250,7 +250,7 @@ void searchData(){
 
 
 void shortData(){
-  system("cls");
+  //system("cls");
   int val,i,rw;
   char clm;
 
@@ -331,11 +331,9 @@ void averageData(){
     case 1:
       cout<<"baris : ";cin>>rw;
       for (int j = 0;j<10;j++){
-        cout<<sheet[rw-1][j]<<endl;
         total += sheet[rw-1][j];
       }
-      avg = total /10;
-      cout<<total<<endl;
+      avg = total / 10;
       cout<<"rata-rata : "<<avg<<endl;
       system("pause");
 	  break;
@@ -382,7 +380,7 @@ void averageData(){
         }
       }
       avg = total /10;
-      cout << avg<<endl;
+      cout <<"rata-rata"<< avg<<endl;
 	  system("pause");
       break;
   }
