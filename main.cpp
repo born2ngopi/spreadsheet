@@ -195,6 +195,7 @@ void sumData(){
   }
 
   cout<<"hasil penjumlahan : "<<total;
+  system("pause");
 }
 
 void searchData(){
@@ -240,8 +241,9 @@ void searchData(){
             break;
         }
 
-        cout<<"data di temukan di collumn : "<<clm<<"row "<<i+1<<endl;
-      }
+        cout<<"data di temukan di collumn : "<<clm<<" row "<<i+1<<endl;
+      	system("pause");
+	  }
     }
   }
 }
@@ -334,8 +336,9 @@ void averageData(){
       }
       avg = total /10;
       cout<<total<<endl;
-      cout<<avg<<endl;
-      break;
+      cout<<"rata-rata"<<avg<<endl;
+      system("pause");
+	  break;
     case 2:
       cout<<"colom : ";cin>>clm;
 
@@ -380,7 +383,7 @@ void averageData(){
       }
       avg = total /10;
       cout << avg<<endl;
-
+	  system("pause");
       break;
   }
 }
@@ -401,6 +404,7 @@ void minData(){
         }
       }
       cout<<"data terkecil "<<min<<endl;
+      system("pause");
       break;
     case 2:
 			cout<<"kolom : ";cin>>clm;
@@ -443,6 +447,7 @@ void minData(){
         }
       }
       cout<<min<<endl;
+      system("pause");
       break;
   }
 }
@@ -461,7 +466,8 @@ void maxData(){
           max = sheet[rw-1][j];
         }
       }
-      cout<<max;
+      cout<<"nilai max"<<max;
+      system("pause");
       break;
     case 2:
       cout<<"kolom : ";cin>>clm;
@@ -503,7 +509,9 @@ void maxData(){
           max = sheet[j][i];
         }
       }
-      cout<<max<<endl;
+      cout<<"data max"<<max<<endl;
+      system("pause");
+      break;
 
   }
 }
