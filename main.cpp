@@ -132,7 +132,7 @@ void dellData(){
 }
 
 void sumData(){
-  int rw1,rw2,i,val;
+  int rw1,rw2,i;
   char clm;
   cout<<"collumn : ";cin>>clm;
   cout<<"rows : ";cin>>rw1;
@@ -171,20 +171,21 @@ void sumData(){
        break;
     }
 
+  int total=0;
   for(int j=0;j<10;++j){
     int rw=rw1-1;
-        for (int k=0;k<10;++k){
-          if (j == i){
-            if(rw <= rw2-1){
-              val += sheet[rw][i];
-              cout<<sheet[rw][i]<<endl;
-              rw++;
-            }
-          }
+    for (int k=0;k<10;++k){
+      if (j == i){
+        if(rw <= rw2-1){
+          total += sheet[rw][j];
+          cout<<sheet[rw][j]<<endl;
+          rw++;
         }
+      }
+    }
   }
 
-  cout<<"hasil penjumlahan : "<<val;
+  cout<<"hasil penjumlahan : "<<total;
 }
 
 void searchData(){
@@ -236,9 +237,10 @@ void searchData(){
 
 
 void shortData(){
-  int temp,val,i,rw;
+  int val,i,rw;
   char clm;
 
+  int temp=0;
   cout<<"1.baris\n2.collumn\n";cin>>val;
 
   switch(val){
@@ -247,7 +249,7 @@ void shortData(){
       //rw-1;
       for(int j=0;j<10;j++){
         cout<<sheet[rw-1][j];
-        if (sheet[rw][j]>sheet[rw][j+1]){
+        if(sheet[rw][j]>sheet[rw][j+1]){
           temp = sheet[rw-1][j+1];
           sheet[rw-1][j+1] = sheet[rw-1][j];
           sheet[rw-1][j] = temp;
@@ -262,21 +264,70 @@ void shortData(){
 }
 
 void averageData(){
-  int val,rw,total;
+  int val,rw,i;
+  int total=0;
   float avg;
   char clm;
   cout<<"1.baris\n2.collumn\n";cin>>val;
   switch(val){
     case 1:
       cout<<"baris : ";cin>>rw;
-      for (int i = 0;i<10;i++){
-        cout<<sheet[rw-1][i]<<endl;
-        total += sheet[rw-1][i];
+      for (int j = 0;j<10;j++){
+        cout<<sheet[rw-1][j]<<endl;
+        total += sheet[rw-1][j];
       }
       avg = total /10;
       cout<<total<<endl;
       cout<<avg<<endl;
       break;
+    case 2:
+      cout<<"colom : ";cin>>clm;
+
+      switch(clm){ //convert char to int
+          case 'A':
+            i = 0;
+            break;
+          case 'B':
+            i=1;
+            break;
+          case 'C':
+            i = 2;
+            break;
+          case 'D':
+            i = 3;
+            break;
+          case 'E':
+            i = 4;
+            break;
+          case 'F':
+            i = 5;
+            break;
+          case 'G':
+            i = 6;
+            break;
+          case 'H':
+            i = 7;
+            break;
+          case 'I':
+            i = 8;
+            break;
+          case 'J':
+            i = 9;
+            break;
+          }
+      for(int j=0;j<10;++j){
+        for (int k=0;k<10;++k){
+          if (k == i){
+            total += sheet[j][k];
+          }
+        }
+      }
+      avg = total /10;
+      cout << avg<<endl;
+
+      break;
+       
+    
   }
 }
 
