@@ -11,6 +11,7 @@ int sheet[10][10];
 
 
 void views(){
+  system("cls");
   //fungsi ini digunakan untuk melihat isi table
   cout<<"\t"<<"|";
   for (int i=0;i<10;++i){
@@ -30,6 +31,7 @@ void views(){
 
 void PrintSheet(){
   //fungsi ini digunakan untuk membuat file
+  system("cls");
   ofstream myfile;
   myfile.open("spreadsheet.txt");
   myfile<<"\t"<<"|";
@@ -49,6 +51,7 @@ void PrintSheet(){
 
 void addData(){
   //fungsi ini digunakan untuk menambah data
+  system("cls");
   int val,rw,i;
   char clm;
   cout<<"collumn : ";cin>>clm;
@@ -94,6 +97,7 @@ void addData(){
 
 void dellData(){
   //fungsi ini digunakan untuk menghapus data
+  system("cls");
   int rw,i;
   char clm;
   cout<<"collumn : ";cin>>clm;
@@ -137,6 +141,7 @@ void dellData(){
 
 void sumData(){
   //fungsi ini digunakan untuk menjumlahakn data
+  system("cls");
   int rw1,rw2,i;
   char clm;
   cout<<"collumn : ";cin>>clm;
@@ -194,6 +199,7 @@ void sumData(){
 
 void searchData(){
   //fungsi ini digunakan untuk mencari data
+  system("cls");
   int val;
   char clm;
   cout<<"masukkan nilai yang dicari : ";cin>>val;
@@ -242,6 +248,7 @@ void searchData(){
 
 
 void shortData(){
+  system("cls");
   int val,i,rw;
   char clm;
 
@@ -312,6 +319,7 @@ void shortData(){
 
 void averageData(){
   //fungsi ini digunakan untuk mencari rata"
+  system("cls");
   int val,rw,i;
   int total=0;
   float avg;
@@ -379,6 +387,7 @@ void averageData(){
 
 
 void minData(){
+  system("cls");
   int val, min, rw,i;
   char clm;
   cout<<"1.baris\n2.kolom\n";cin>>val;
@@ -396,36 +405,36 @@ void minData(){
     case 2:
 			cout<<"kolom : ";cin>>clm;
       switch(clm){
-			case 'A':
-      i = 0;
-      break;
-    case 'B':
-      i=1;
-      break;
-    case 'C':
-      i = 2;
-      break;
-    case 'D':
-      i = 3;
-      break;
-    case 'E':
-      i = 4;
-      break;
-    case 'F':
-      i = 5;
-      break;
-    case 'G':
-      i = 6;
-      break;
-    case 'H':
-      i = 7;
-      break;
-    case 'I':
-      i = 8;
-      break;
-    case 'J':
-      i = 9;
-      break;
+		case 'A':
+			i = 0;
+			break;
+		case 'B':
+			i=1;
+			break;
+		case 'C':
+		  i = 2;
+		  break;
+		case 'D':
+		  i = 3;
+		  break;
+		case 'E':
+		  i = 4;
+		  break;
+		case 'F':
+		  i = 5;
+		  break;
+		case 'G':
+		  i = 6;
+		  break;
+		case 'H':
+		  i = 7;
+		  break;
+		case 'I':
+		  i = 8;
+		  break;
+		case 'J':
+		  i = 9;
+		  break;
 			}
       min =0;
       for (int j=0;j<10;j++){
@@ -439,6 +448,7 @@ void minData(){
 }
 
 void maxData(){
+  system("cls");
   int val,max,rw,i;
   char clm;
   cout<<"1.baris\n2.collumn\n";cin>>val;
@@ -501,6 +511,7 @@ void maxData(){
 void function(){
     int val;
     do{
+	  system("cls");
       cout<<"menu function\n\n";
       cout<<"1. tambah data\n";
       cout<<"2. delete data\n";
@@ -512,7 +523,7 @@ void function(){
       cout<<"8. nilai terbesar\n";
       cout<<"9. kembali\n";
 
-      cout<<"masukkan pilihan [1..7] ";cin>>val;
+      cout<<"masukkan pilihan [1..9] ";cin>>val;
       switch(val){
         case 1:
           addData();
@@ -540,6 +551,7 @@ void function(){
           break;
       }
     }while(val!=9);
+	system("cls");
 }
 
 
@@ -553,8 +565,9 @@ int main(){
     cout<<"1.View Sheet"<<endl;
     cout<<"2.Print Sheet"<<endl;
     cout<<"3.Function"<<endl;
+	cout<<"4.exit"<<endl;
 
-    cout<<"pilih [1..3] ";cin>>val;
+    cout<<"pilih [1..4] ";cin>>val;
     switch(val){
       case 1:
         views();
