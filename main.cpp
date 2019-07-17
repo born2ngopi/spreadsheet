@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 
 using namespace std;
 
@@ -80,7 +81,7 @@ char convertToChar(int i){
 }
 
 void views(){
-  system("cls");
+  //system("cls");
   //fungsi ini digunakan untuk melihat isi table
   cout<<"\t"<<"|";
   for (int i=0;i<10;++i){
@@ -100,7 +101,7 @@ void views(){
 
 void PrintSheet(){
   //fungsi ini digunakan untuk membuat file
-  system("cls");
+  //system("cls");
   ofstream myfile;
   myfile.open("spreadsheet.txt");
   myfile<<"\t"<<"|";
@@ -135,7 +136,7 @@ void addData(){
 
 void dellData(){
   //fungsi ini digunakan untuk menghapus data
-  system("cls");
+  //system("cls");
   int rw,i;
   char clm;
   cout<<"collumn : ";cin>>clm;
@@ -148,7 +149,7 @@ void dellData(){
 
 void sumData(){
   //fungsi ini digunakan untuk menjumlahakn data
-  system("cls");
+  //system("cls");
   int val,rw1,rw2,i,m,n;
   char clm,clm1,clm2;
   int total =0;
@@ -203,7 +204,7 @@ void sumData(){
 
 void searchData(){
   //fungsi ini digunakan untuk mencari data
-  system("cls");
+  //system("cls");
   int val;
   char clm;
   cout<<"masukkan nilai yang dicari : ";cin>>val;
@@ -221,7 +222,7 @@ void searchData(){
 
 
 void shortData(){
-  system("cls");
+  //system("cls");
   int val,i,rw;
   char clm;
 
@@ -234,10 +235,10 @@ void shortData(){
       
       for(int j=0;j<9;j++){
         cout<<sheet[rw-1][j];
-        if(sheet[rw-1][j]>sheet[rw-1][j+1]){
-          temp = sheet[rw-1][j+1];
-          sheet[rw-1][j+1] = sheet[rw-1][j];
-          sheet[rw-1][j] = temp;
+        if(sheet[rw-1][j]>=sheet[rw-1][j+1]){
+          temp = sheet[rw-1][j];
+          sheet[rw-1][j] = sheet[rw-1][j+1];
+          sheet[rw-1][j+1] = temp;
         }
       }
 
@@ -263,7 +264,7 @@ void shortData(){
 
 void averageData(){
   //fungsi ini digunakan untuk mencari rata"
-  system("cls");
+  //system("cls");
   int val,rw,i;
   int total=0;
   float avg;
@@ -300,7 +301,7 @@ void averageData(){
 
 
 void minData(){
-  system("cls");
+  //system("cls");
   int val, min, rw,i;
   char clm;
   cout<<"1.baris\n2.kolom\n";cin>>val;
@@ -330,7 +331,7 @@ void minData(){
 }
 
 void maxData(){
-  system("cls");
+  //system("cls");
   int val,max,rw,i;
   char clm;
   cout<<"1.baris\n2.collumn\n";cin>>val;
@@ -365,48 +366,43 @@ void maxData(){
 }
 
 void function(){
-    int val;
+    string val;
     do{
       system("cls");
       cout<<"menu function\n\n";
-      cout<<"1. tambah data\n";
-      cout<<"2. delete data\n";
-      cout<<"3. penjumlahan data\n";
-      cout<<"4. cari data\n";
-      cout<<"5. sorting\n";
-      cout<<"6. rata-rata\n";
-      cout<<"7. nilai terkecil\n";
-      cout<<"8. nilai terbesar\n";
+      cout<<"1. adddata(cell,val)\n";
+      cout<<"2. deldata(cell)\n";
+      cout<<"3. sum(cell,toCell)\n";
+      cout<<"4. search(val)\n";
+      cout<<"5. sort(val)\n";
+      cout<<"6. mean(collumn/rows)\n";
+      cout<<"7. min(collumn/rows)\n";
+      cout<<"8. max(collumn/rows)\n";
       cout<<"9. kembali\n";
 
       cout<<"masukkan pilihan [1..9] ";cin>>val;
-      switch(val){
-        case 1:
-          addData();
-          break;
-        case 2:
-          dellData();
-          break;
-        case 3:
-          sumData();
-          break;
-        case 4:
-          searchData();
-          break;
-        case 5:
-          shortData();
-          break;
-        case 6:
-          averageData();
-          break;
-        case 7:
-          minData();
-          break;
-        case 8:
-          maxData();
-          break;
+      
+      string delimiter = "(";
+      string token = val.substr(0,val.find(delimiter));
+
+      if (token == "adddata"){
+          cout<<"function add"<<endl;
+      }else if (token == "deldata"){
+          cout<<"function del"<<endl;
+      }else if (token == "sum"){
+          cout<<"function sum"<<endl;
+      }else if(token == "search"){
+          cout<<"function search"<<endl;
+      }else if(token == "sort"){
+	  cout<<"function sort"<<endl;
+      }else if(token == "mean"){
+	  cout<<"function mean"<<endl;
+      }else if(token == "min"){
+	  cout<<"function min"<<endl;
+      }else if(token == "max"){
+	  cout<<"function max"<<endl;
       }
-    }while(val!=9);
+    }while(val!="kembali");
 }
 
 
