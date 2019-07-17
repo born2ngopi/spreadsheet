@@ -153,7 +153,7 @@ void Intruction(){
 	//variabel ini digunakan untuk menampung input intruksi
 	string intr;
 	
-  //system("cls");
+  system("cls");
   cout<<"your intruction : ";cin>>intr;
   string delimiter = "(";
   string token = intr.substr(0,intr.find(delimiter));
@@ -233,19 +233,18 @@ void Intruction(){
     if (kolom == kolom2){
       for(int i=0;i<10;i++){
         if (i == kolom){
-          if (baris <= baris2 ){
-            total += sheet[baris][i];
-            baris++;
+          for (int j=baris;j<=baris2;j++){
+            total += sheet[j][i];
           }
         }
       }
+    
       cout<<"total penjumlahan nilai dari kolom adalah "<<total<<endl;
     }else{
       for(int i=0;i<10;i++){
         if (i == baris){
-          if (kolom <= kolom2){
-            total += sheet[i][kolom];
-            kolom++;
+          for (int j=kolom;j<=kolom2;j++){
+            total += sheet[i][j];
           }
         }
       }
@@ -301,11 +300,11 @@ void Intruction(){
 
   }else if(token == "min" || token == "MIN"){
     int cek,min;
-    intr.erase(0,5);
-    cek = Check(intr);
+    str = intr.substr(4,1);
+    cek = Check(str);
 
     if (cek > 0){
-      kolom = CollumToInt(intr);
+      kolom = CollumToInt(str);
 
       for (int i=0;i<10;i++){
         if(sheet[i][kolom]<min && sheet[i][kolom] != 0){
@@ -314,7 +313,7 @@ void Intruction(){
       }
       cout<<"nilai terkecil pada kolom "<<intr<<" adalah "<<min<<endl;
     }else{
-      baris = RowToInt(intr);
+      baris = RowToInt(str);
 
       for (int i=0;i<10;i++){
         if (sheet[baris][i]<min && sheet[baris][i] != 0){
@@ -329,7 +328,7 @@ void Intruction(){
   }else if(token == "max" || token == "MAX"){
     int cek,max=0;
     str = intr.substr(4,1);
-    cek = Check(intr);
+    cek = Check(str);
 
     if (cek > 0){
       kolom = CollumToInt(str);
@@ -341,7 +340,7 @@ void Intruction(){
       }
       cout<<"nilai terbesar pada kolom "<<intr<<" adalah "<<max<<endl;
     }else{
-      baris = RowToInt(intr);
+      baris = RowToInt(str);
 
       for(int i=0;i<10;i++){
         if(sheet[baris][i]>max){
