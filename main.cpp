@@ -1,438 +1,216 @@
 #include <iostream>
+#include <iomanip>
+//#include <conio.h>
 #include <fstream>
-#include <string>
+#include <stdlib.h>
+#include <algorithm>
+#include <cstring>
+#include <cstdlib>
+
 
 using namespace std;
 
-//deklarasi variabel
-//create table
-string collumns[10] = {"A","B","C","D","E","F","G","H","I","J"};
-int rows[10] = {1,2,3,4,5,6,7,8,9,10};
 int sheet[10][10];
 
-int convertToInt(char a){
-  switch(a){
-    case 'A':
-      return 0;
-      break;
-    case 'B':
-      return 1;
-      break;
-    case 'C':
-      return 2;
-      break;
-    case 'D':
-      return 3;
-      break;
-    case 'E':
-      return 4;
-      break;
-    case 'F':
-      return 5;
-      break;
-    case 'G':
-      return 6;
-      break;
-    case 'H':
-      return 7;
-      break;
-    case 'I':
-      return 8;
-      break;
-    case 'J':
-      return 9;
-      break;
-  }
-}
+//prototype fungsi views
+void Views(); 
 
-char convertToChar(int i){
-  switch (i){
-    case 0:
-      return 'A';
-      break;
-    case 1:
-      return 'B';
-      break;
-    case 2:
-      return 'C';
-      break;
-    case 3:
-      return 'D';
-      break;
-    case 4:
-      return 'E';
-      break;
-    case 5:
-      return 'F';
-      break;
-    case 6:
-      return 'G';
-      break;
-    case 7:
-      return 'H';
-      break;
-    case 8:
-      return 'I';
-      break;
-    case 9:
-      return 'J';
-      break;
-  }
-}
+//prototype fungsi printsheet
+void PrintSheet();
 
-void views(){
-  //system("cls");
-  //fungsi ini digunakan untuk melihat isi table
-  cout<<"\t"<<"|";
-  for (int i=0;i<10;++i){
-    cout<<collumns[i]<<"\t"<<"|";
-  }
-  cout<<endl;
-  for(int i=0;i<10;++i){
-    cout<<rows[i]<<"\t"<<"|";
-
-    for (int j=0;j<10;++j){
-      cout<<sheet[i][j]<<"\t"<<"|";
-    }
-
-    cout<<endl;
-  }
-}
-
-void PrintSheet(){
-  //fungsi ini digunakan untuk membuat file
-  //system("cls");
-  ofstream myfile;
-  myfile.open("spreadsheet.txt");
-  myfile<<"\t"<<"|";
-  for(int i=0;i<10;++i){
-    myfile<<collumns[i]<<"\t"<<"|";
-  }
-  myfile<<"\n";
-  for(int i=0;i<10;++i){
-    myfile<<rows[i]<<"\t"<<"|";
-    for(int j=0;j<10;j++){
-      myfile<<sheet[i][j]<<"\t"<<"|";
-    }
-    myfile<<"\n";
-  }
-  myfile.close();
-}
-
-void addData(){
-  //fungsi ini digunakan untuk menambah data
-  system("cls");
-  int val,rw,i;
-  char clm;
-  cout<<"collumn : ";cin>>clm;
-  cout<<"rows : ";cin>>rw;
-  cout<<"\nnilai : ";cin>>val;
-
-  i = convertToInt(clm);
-  
-  sheet[rw-1][i] = val;
-}
-
-
-void dellData(){
-  //fungsi ini digunakan untuk menghapus data
-  //system("cls");
-  int rw,i;
-  char clm;
-  cout<<"collumn : ";cin>>clm;
-  cout<<"rows : ";cin>>rw;
-
-  i = convertToInt(clm);
-   
-  sheet[rw-1][i] = 0;
-}
-
-void sumData(){
-  //fungsi ini digunakan untuk menjumlahakn data
-  //system("cls");
-  int val,rw1,rw2,i,m,n;
-  char clm,clm1,clm2;
-  int total =0;
-  cout <<"1.kolom\n2.baris\n";cin>>val;
-  switch(val){
-    case 1:
-      cout<<"collumn : ";cin>>clm;
-      cout<<"rows    : ";cin>>rw1;
-      cout<<"to rows : ";cin>>rw2;
-
-      i = convertToInt(clm);
-
-      for(int j=0;j<10;++j){
-        int rw=rw1-1;
-        for (int k=0;k<10;++k){
-          if (j == i){
-            if(rw <= rw2-1){
-              total += sheet[rw][j];
-              rw++;
-            }
-          }
-        }
-      }
-      cout<<"hasil penjumlahan : "<<total<<endl;
-      system("pause");
-      break;
-    case 2:
-      cout <<"rows        :";cin>>rw1;
-      cout <<"collumns    :";cin>>clm1;
-      cout <<"to collumns :";cin>>clm2;
-
-      m = convertToInt(clm1);
-      n = convertToInt(clm2);
-
-      for(int j=0;j<10;++j){
-        int rw=rw1-1;
-        for (int k=0;k<10;++k){
-          if (j == i){
-            if(m <= n){
-              total += sheet[rw][m];
-              m++;
-            }
-          }
-        }
-      }
-      cout<<"hasil penjumlahan : "<<total<<endl;
-      system("pause");
-      break;
-
-  }
-}
-
-void searchData(){
-  //fungsi ini digunakan untuk mencari data
-  //system("cls");
-  int val;
-  char clm;
-  cout<<"masukkan nilai yang dicari : ";cin>>val;
-
-  for(int i=0;i<10;++i){
-    for (int j=0;j<10;++j){
-      if (sheet[i][j]==val){
-        clm = convertToChar(j);
-        cout<<"data di temukan di collumn : "<<clm<<" row "<<i+1<<endl;
-      	system("pause");
-      }
-    }
-  }
-}
-
-
-void shortData(){
-  //system("cls");
-  int val,i,rw;
-  char clm;
-
-  int temp=0;
-  cout<<"1.baris\n2.collumn\n";cin>>val;
-
-  switch(val){
-    case 1:
-      cout<<"masukkan baris : ";cin>>rw;
-      
-      for(int j=0;j<9;j++){
-        cout<<sheet[rw-1][j];
-        if(sheet[rw-1][j]>=sheet[rw-1][j+1]){
-          temp = sheet[rw-1][j];
-          sheet[rw-1][j] = sheet[rw-1][j+1];
-          sheet[rw-1][j+1] = temp;
-        }
-      }
-
-      
-      break;
-    case 2:
-      cout<<"kolom : ";cin>>clm;
-      
-      i = convertToInt(clm);
-      
-      for (int j=0;j<9;j++){
-        if (sheet[j][i]>sheet[j+1][i]){
-          temp = sheet[j+1][i];
-          sheet[j+1][i]=sheet[j][i];
-          sheet[j][i]=temp;
-        }
-      }
-      break;
-  }
-
-
-}
-
-void averageData(){
-  //fungsi ini digunakan untuk mencari rata"
-  //system("cls");
-  int val,rw,i;
-  int total=0;
-  float avg;
-  char clm;
-  cout<<"1.baris\n2.collumn\n";cin>>val;
-  switch(val){
-    case 1:
-      cout<<"baris : ";cin>>rw;
-      for (int j = 0;j<10;j++){
-        total += sheet[rw-1][j];
-      }
-      avg = (float)(total) / 10;
-      cout<<"rata-rata : "<<avg<<endl;
-      system("pause");
-	  break;
-    case 2:
-      cout<<"colom : ";cin>>clm;
-
-      i = convertToInt(clm);
-
-      for(int j=0;j<10;++j){
-        for (int k=0;k<10;++k){
-          if (k == i){
-            total += sheet[j][k];
-          }
-        }
-      }
-      avg = (float)(total) /10;
-      cout <<"rata-rata"<< avg<<endl;
-	  system("pause");
-      break;
-  }
-}
-
-
-void minData(){
-  //system("cls");
-  int val, min, rw,i;
-  char clm;
-  cout<<"1.baris\n2.kolom\n";cin>>val;
-  switch(val){
-    case 1:
-      cout<<"baris :";cin>>rw;
-      for (int j=0;j<10;j++){
-        if (min > sheet[rw-1][j] && sheet[rw-1][j]!=0){
-          min = sheet[rw-1][j];
-        }
-      }
-      cout<<"data terkecil : "<<min<<endl;
-      system("pause");
-      break;
-    case 2:
-      cout<<"kolom : ";cin>>clm;
-      i = convertToInt(clm);
-      for (int j=0;j<10;j++){
-        if (min>sheet[j][i] && sheet[j][i] != 0){
-          min = sheet[j][i];
-        }
-      }
-      cout<<"nilai terkecil : "<<min<<endl;
-      system("pause");
-      break;
-  }
-}
-
-void maxData(){
-  //system("cls");
-  int val,max,rw,i;
-  char clm;
-  cout<<"1.baris\n2.collumn\n";cin>>val;
-  switch(val){
-    case 1:
-      cout<<"baris : ";cin>>rw;
-      max =0;
-      for (int j=0;j<10;j++){
-        if(max<sheet[rw-1][j]){
-          max = sheet[rw-1][j];
-        }
-      }
-      cout<<"nilai max : "<<max<<endl;
-      system("pause");
-      break;
-    case 2:
-      cout<<"kolom : ";cin>>clm;
-      
-      i = convertToInt(clm);
-
-      max =0;
-      for (int j=0;j<10;j++){
-        if (max<sheet[j][i]){
-          max = sheet[j][i];
-        }
-      }
-      cout<<"data max :"<<max<<endl;
-      system("pause");
-      break;
-
-  }
-}
-
-void function(){
-    string val;
-    do{
-      system("cls");
-      cout<<"menu function\n\n";
-      cout<<"1. adddata(cell,val)\n";
-      cout<<"2. deldata(cell)\n";
-      cout<<"3. sum(cell,toCell)\n";
-      cout<<"4. search(val)\n";
-      cout<<"5. sort(val)\n";
-      cout<<"6. mean(collumn/rows)\n";
-      cout<<"7. min(collumn/rows)\n";
-      cout<<"8. max(collumn/rows)\n";
-      cout<<"9. kembali\n";
-
-      cout<<"masukkan pilihan [1..9] ";cin>>val;
-      
-      string delimiter = "(";
-      string token = val.substr(0,val.find(delimiter));
-
-      if (token == "adddata"){
-          cout<<"function add"<<endl;
-      }else if (token == "deldata"){
-          cout<<"function del"<<endl;
-      }else if (token == "sum"){
-          cout<<"function sum"<<endl;
-      }else if(token == "search"){
-          cout<<"function search"<<endl;
-      }else if(token == "sort"){
-	  cout<<"function sort"<<endl;
-      }else if(token == "mean"){
-	  cout<<"function mean"<<endl;
-      }else if(token == "min"){
-	  cout<<"function min"<<endl;
-      }else if(token == "max"){
-	  cout<<"function max"<<endl;
-      }
-    }while(val!="kembali");
-}
-
+//prototype fungsi intruction
+void Intruction();
 
 
 int main(){
-  int val;
+	int val;// variabel ini digunakan untuk menampung nilai inputan menu
+	do{
+		cout<<"  Menu\n";
+		cout<<"1. View Sheet\n";
+		cout<<"2. Print Sheet\n";
+		cout<<"3. Function\n";
+    cout<<"4. exit\n";
 
-  do{
-    system("cls");
-    cout<<"Mini Spreadsheet\n\n"<<endl;
-    cout<<"menu"<<endl;
-    cout<<"1.View Sheet"<<endl;
-    cout<<"2.Print Sheet"<<endl;
-    cout<<"3.Function"<<endl;
-	cout<<"4.exit"<<endl;
+		cout<<"input [1..3] : ";cin>>val;
 
-    cout<<"pilih [1..4] ";cin>>val;
-    switch(val){
-      case 1:
-        views();
-        break;
-      case 2:
-        PrintSheet();
-        break;
-      case 3:
-        function();
-        break;
-      default:
-        cout<<"data yang anda masukkan salah\n";
+		switch(val){
+			case 1:
+				Views();
+				break;
+			case 2:
+				PrintSheet();
+				break;
+			case 3:
+				Intruction();
+				break;
+		}
+	}while(val!=4);
+}
+
+void Views(){
+  cout<<"\t"<<"|";
+	for(char a='A';a<='J';a++){
+    cout<<a<<"\t"<<"|";
+  }
+  cout<<endl;
+
+  for(int i=0;i<10;i++){
+    cout<<i+1<<"\t"<<"|";
+      for(int j=0;j<10;j++){
+         cout<<sheet[i][j]<<"\t"<<"|";
+      }
+			cout<<endl;
+  }
+  cout<<endl;
+   					//cout<<"Kembali ke Menu Utama Y/N : ";cin>>yt;
+			        //    if(yt == 'Y' || yt == 'y'){
+			          //  	goto menu;
+	system("pause");
+}
+
+void PrintSheet(){
+	ofstream file;
+  file.open("spreadsheet.txt");
+  file<<"\t"<<"|";
+  for(int i='A';i<='J';++i){
+    file<<i<<"\t"<<"|";
+  }
+  file<<"\n";
+  for(int i=0;i<10;++i){
+    file<<i<<"\t"<<"|";
+    for(int j=0;j<10;j++){
+      file<<sheet[i][j]<<"\t"<<"|";
     }
-  }while(val!=4);
+    file<<"\n";
+  }
+  file.close();
+
+	cout<<"data berahasil di inputkan ke file spreadsheet.txt"<<endl;
+  system("pause");
+}
+
+int CollumToInt(string x){
+  if(x == "A"){
+    	return 0;
+	}else if (x == "B"){
+		return 1;
+	}else if (x == "C"){
+		 return 2;
+	}else if (x == "D"){
+		 return 3;
+	}else if (x == "E"){
+		 return 4;
+	}else if (x == "F"){
+		 return 5;
+	}else if (x == "G"){
+		 return 6;
+	}else if (x == "H"){
+		 return 7;
+	}else if (x == "I"){
+		 return 8;
+	}else if (x == "J"){
+		 return 9;
+	}else{
+		cout<<"inputan salah";
+	}
+}
+
+int RowToInt(string x){
+	if(x == "1"){
+    	return 0;
+	}else if (x == "2"){
+		return 1;
+	}else if (x == "3"){
+		return 2;
+	}else if (x == "4"){
+		return 3;
+	}else if (x == "5"){
+		return 4;
+	}else if (x == "6"){
+		return 5;
+	}else if (x == "7"){
+		return 6;
+	}else if (x == "8"){
+		return 7;
+	}else if (x == "9"){
+		return 8;
+	}else if (x == "10"){
+		return 9;
+	}else{
+		cout<<"inputan salah";
+	}
+}
+
+void Intruction(){
+	//variabel ini digunakan untuk menampung input intruksi
+	string intr;
+	
+  //system("cls");
+  cout<<"your intruction : ";cin>>intr;
+  string delimiter = "(";
+  string token = intr.substr(0,intr.find(delimiter));
+
+  string strKolom, str;
+
+  int val, kolom, baris;
+
+  int koma = intr.find(",");//digunakan untuk mengetahui apakah terdapat koma
+
+  //hapus ")"
+  int del = intr.find(")");
+  intr.erase(del);
+
+  if (token == "SET" || token == "set"){
+    //menambah data atau mengeset nilai data
+    
+    str = intr.substr(4,1);//mengabil nilai index ke 4 satu karakter
+                           //yang mana nilai nya adalah kolom
+    kolom = CollumToInt(str);
+    strKolom = str;
+
+    if(koma == 6){
+      str = intr.substr(5,1); //mengambil nilai index ke 5 satu karakter
+                              //yang mana nilainya adalah baris
+      baris = RowToInt(str);
+
+      intr.erase(0,7); //hapus nilai dari index ke 0 sampai sebelum index 7;
+      val = atoi(intr.c_str());
+      sheet[baris][kolom] = val; //set / add nilai ke array
+      cout<<endl;
+      cout<<"data ["<<val<<"] berhasil di tambahkan ke kolom ["<<strKolom<<"] baris ["<<baris<<"]"<<endl;
+    }else if(koma == 7){
+      str = intr.substr(5,2);
+      baris = RowToInt(str);
+      intr.erase(0,8);
+      val = atoi(intr.c_str());
+      sheet[baris][kolom] = val;
+      cout<<endl<<"berhasil"<<endl;
+    }
+    
+    system("pause");
+
+  }else if(token == "DEL" || token == "del"){
+    //baris kode disini digunakan untuk menghapus nilai / menggantinya dengan 0
+    //
+    str = intr.substr(4,1);//mengambil nilai index ke 4
+                           // dimana nilainya adalah kolom
+    kolom = CollumToInt(str); // convert string to index array (int)
+    strKolom = str;
+
+    str = intr.substr(5,2);//mengambil nilai index ke 5
+                           // dimana nilainya adalah baris
+    baris = RowToInt(str);//convet string to index array (int)
+
+    sheet[baris][kolom] = 0;
+    cout<<endl;
+    cout<<"baris ["<<baris<<"] kolom ["<<strKolom<<"] berhasil dihapus"<<endl;
+
+    system("pause");
+    
+  }else if(token == "DEL" || token == "del"){
+
+  }
+
+
 
 }
