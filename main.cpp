@@ -141,6 +141,14 @@ int RowToInt(string x){
 	}
 }
 
+int Check(string a){
+  if (a == "A" || a == "B" || a == "C" || a == "D" || a == "E" || a == "F" || a == "G" || a == "H" || a == "I" || a == "J"){
+    return 1;
+  }else {
+    return 0;
+  }
+}
+
 void Intruction(){
 	//variabel ini digunakan untuk menampung input intruksi
 	string intr;
@@ -177,7 +185,7 @@ void Intruction(){
       val = atoi(intr.c_str());
       sheet[baris][kolom] = val; //set / add nilai ke array
       cout<<endl;
-      cout<<"data ["<<val<<"] berhasil di tambahkan ke kolom ["<<strKolom<<"] baris ["<<baris<<"]"<<endl;
+      cout<<"data \""<<val<<"\" berhasil di tambahkan ke kolom ["<<strKolom<<"] baris ["<<baris+1<<"]"<<endl;
     }else if(koma == 7){
       str = intr.substr(5,2);
       baris = RowToInt(str);
@@ -203,12 +211,147 @@ void Intruction(){
 
     sheet[baris][kolom] = 0;
     cout<<endl;
-    cout<<"baris ["<<baris<<"] kolom ["<<strKolom<<"] berhasil dihapus"<<endl;
+    cout<<"baris ["<<baris+1<<"] kolom ["<<strKolom<<"] berhasil dihapus"<<endl;
 
     system("pause");
     
-  }else if(token == "DEL" || token == "del"){
+  }else if(token == "SUM" || token == "sum"){
+    int baris2,kolom2,total=0;
+    //set value pertama
+    str = intr.substr(4,1);
+    kolom = CollumToInt(str);
+    strKolom = str;
+    str = intr.substr(5,1);
+    baris = RowToInt(str);
 
+    //set value kedua
+    str = intr.substr(7,1);
+    kolom2 = CollumToInt(str);
+    intr.erase(0,8);
+    baris2 = RowToInt(intr);
+
+    if (kolom == kolom2){
+      for(int i=0;i<10;i++){
+        if (i == kolom){
+          if (baris <= baris2 ){
+            total += sheet[baris][i];
+            baris++;
+          }
+        }
+      }
+      cout<<"total penjumlahan nilai dari kolom adalah "<<total<<endl;
+    }else{
+      for(int i=0;i<10;i++){
+        if (i == baris){
+          if (kolom <= kolom2){
+            total += sheet[i][kolom];
+            kolom++;
+          }
+        }
+      }
+      cout<<"hasil penjumlahan nilai dari baris adalah "<<total<<endl;
+    }
+
+    system("pause");
+  }else if(token == "search" || token == "SEARCH"){
+    int src;
+    intr.erase(0,7);
+    src = atoi(intr.c_str());//convert string ke integer
+
+    for (int i=0;i<10;i++){
+      for (int j=0;j<10;j++){
+        if(sheet[i][j] == src){
+          cout<<"data ditemukan pada baris "<<i+1<<" kolom "<<j+1<<endl;
+        }
+      }
+    }
+
+    system("pause");
+  }else if(token == "sort" || token == "SORT"){
+    
+
+  }else if(token == "mean" || token == "MEAN"){
+    int total=0,cek;
+    float rata;
+    str = intr.substr(5,1);
+    strKolom = str;
+    cek = Check(str);//validate kolom / baris
+
+    if (cek > 0){
+      kolom = CollumToInt(str);
+
+      for (int i=0;i<10;i++){
+        total += sheet[i][kolom];
+      }
+      rata = (float)(total) / 10;
+      cout<<"nilai rata -rata kolom "<<strKolom<<" : "<<endl;
+      cout<<total<<" / 10 : "<<rata<<endl;
+    }else{
+      baris = RowToInt(str);
+
+      for (int i=0;i<10;i++){
+        total += sheet[baris][i];
+      }
+      float rata = (float)(total) /10;
+      cout<<"nilai rata-rata baris "<<baris+1<<" : "<<endl;
+      cout<<total<<" / 10 : "<<rata<<endl;
+    }
+
+    system("pause");
+
+  }else if(token == "min" || token == "MIN"){
+    int cek,min;
+    intr.erase(0,5);
+    cek = Check(intr);
+
+    if (cek > 0){
+      kolom = CollumToInt(intr);
+
+      for (int i=0;i<10;i++){
+        if(sheet[i][kolom]<min && sheet[i][kolom] != 0){
+          min = sheet[i][kolom];
+        }
+      }
+      cout<<"nilai terkecil pada kolom "<<intr<<" adalah "<<min<<endl;
+    }else{
+      baris = RowToInt(intr);
+
+      for (int i=0;i<10;i++){
+        if (sheet[baris][i]<min && sheet[baris][i] != 0){
+          min = sheet[baris][i];
+        }
+      }
+      cout<<"nilai terkecil pada baris "<<intr<<" adalah "<<min<<endl;
+    }
+
+    system("pause");
+
+  }else if(token == "max" || token == "MAX"){
+    int cek,max=0;
+    str = intr.substr(4,1);
+    cek = Check(intr);
+
+    if (cek > 0){
+      kolom = CollumToInt(str);
+
+      for(int i=0;i<10;i++){
+        if (sheet[i][kolom]>max){
+          max = sheet[i][kolom];
+        }
+      }
+      cout<<"nilai terbesar pada kolom "<<intr<<" adalah "<<max<<endl;
+    }else{
+      baris = RowToInt(intr);
+
+      for(int i=0;i<10;i++){
+        if(sheet[baris][i]>max){
+          max = sheet[baris][i];
+        }
+      }
+      cout<<"nilai terbesar pada baris "<<intr<<" adalah "<<max<<endl;
+    }
+
+    system("pause");
   }
 
 
