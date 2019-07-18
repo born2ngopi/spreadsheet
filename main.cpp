@@ -71,7 +71,7 @@ void PrintSheet(){
   file.open("spreadsheet.txt");
   file<<"\t"<<"|";
   for(int i=0;i<=10;++i){
-    file<<collumns[i]<<"\t"<<"|";
+    file<<"|"<<collumns[i]<<"\t";
   }
   file<<"\n";
   for(int i=0;i<10;++i){
@@ -282,6 +282,14 @@ void Intruction(){
             }
           }
 
+	}else if(i == 0){
+	  for (int j=0;j<9;j++){
+            if (sheet[j][kolom]<sheet[j-1][kolom]){
+              temp = sheet[j-1][i];
+              sheet[j-1][kolom]=sheet[j][kolom];
+              sheet[j][kolom]=temp;
+            }
+          }
 	}
 
     }
