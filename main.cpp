@@ -11,7 +11,7 @@
 using namespace std;
 
 int sheet[10][10];
-
+string collumns[10] = {"A","B","C","D","E","F","G","H","I","J"};
 //prototype fungsi views
 void Views(); 
 
@@ -62,9 +62,7 @@ void Views(){
 			cout<<endl;
   }
   cout<<endl;
-   					//cout<<"Kembali ke Menu Utama Y/N : ";cin>>yt;
-			        //    if(yt == 'Y' || yt == 'y'){
-			          //  	goto menu;
+   					
 	system("pause");
 }
 
@@ -72,12 +70,12 @@ void PrintSheet(){
 	ofstream file;
   file.open("spreadsheet.txt");
   file<<"\t"<<"|";
-  for(int i='A';i<='J';++i){
-    file<<i<<"\t"<<"|";
+  for(int i=0;i<=10;++i){
+    file<<collumns[i]<<"\t"<<"|";
   }
   file<<"\n";
   for(int i=0;i<10;++i){
-    file<<i<<"\t"<<"|";
+    file<<i+1<<"\t"<<"|";
     for(int j=0;j<10;j++){
       file<<sheet[i][j]<<"\t"<<"|";
     }
@@ -267,7 +265,26 @@ void Intruction(){
 
     system("pause");
   }else if(token == "sort" || token == "SORT"){
-    
+    int temp,cek,sort,i;
+    str = intr.substr(5,1);
+    cek = Check(str);
+    kolom = CollumToInt(str);
+    str = intr.substr(7,1);
+    i = atoi(str.c_str());
+
+    if(cek > 0){
+	if (i == 1){
+          for (int j=0;j<9;j++){
+            if (sheet[j][kolom]>sheet[j+1][kolom]){
+              temp = sheet[j+1][i];
+              sheet[j+1][kolom]=sheet[j][kolom];
+              sheet[j][kolom]=temp;
+            }
+          }
+
+	}
+
+    }
 
   }else if(token == "mean" || token == "MEAN"){
     int total=0,cek;
