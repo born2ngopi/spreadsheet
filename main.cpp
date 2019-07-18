@@ -71,7 +71,7 @@ void PrintSheet(){
   file.open("spreadsheet.txt");
   file<<"\t"<<"|";
   for(int i=0;i<=10;++i){
-    file<<"|"<<collumns[i]<<"\t";
+    file<<collumns[i]<<"\t"<<"|";
   }
   file<<"\n";
   for(int i=0;i<10;++i){
@@ -324,19 +324,20 @@ void Intruction(){
     system("pause");
 
   }else if(token == "min" || token == "MIN"){
-    int cek,min;
+    int cek,min=100000;
     str = intr.substr(4,1);
     cek = Check(str);
 
     if (cek > 0){
       kolom = CollumToInt(str);
-
+ 
       for (int i=0;i<10;i++){
+	cout<<kolom<<endl;
         if(sheet[i][kolom]<min && sheet[i][kolom] != 0){
           min = sheet[i][kolom];
         }
       }
-      cout<<"nilai terkecil pada kolom "<<intr<<" adalah "<<min<<endl;
+      cout<<"nilai terkecil pada kolom "<<str<<" adalah "<<min<<endl;
     }else{
       baris = RowToInt(str);
 
@@ -345,7 +346,7 @@ void Intruction(){
           min = sheet[baris][i];
         }
       }
-      cout<<"nilai terkecil pada baris "<<intr<<" adalah "<<min<<endl;
+      cout<<"nilai terkecil pada baris "<<baris+1<<" adalah "<<min<<endl;
     }
 
     system("pause");
@@ -357,13 +358,14 @@ void Intruction(){
 
     if (cek > 0){
       kolom = CollumToInt(str);
+      strKolom = str;
 
       for(int i=0;i<10;i++){
         if (sheet[i][kolom]>max){
           max = sheet[i][kolom];
         }
       }
-      cout<<"nilai terbesar pada kolom "<<intr<<" adalah "<<max<<endl;
+      cout<<"nilai terbesar pada kolom "<<strKolom<<" adalah "<<max<<endl;
     }else{
       baris = RowToInt(str);
 
@@ -372,7 +374,7 @@ void Intruction(){
           max = sheet[baris][i];
         }
       }
-      cout<<"nilai terbesar pada baris "<<intr<<" adalah "<<max<<endl;
+      cout<<"nilai terbesar pada baris "<<baris+1<<" adalah "<<max<<endl;
     }
 
     system("pause");
